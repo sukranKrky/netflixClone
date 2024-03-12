@@ -1,9 +1,10 @@
 
-import { Route, Routes } from 'react-router-dom'
 import './App.css'
 import HomePage from './Component/HomePage'
 import Users from './Component/Users'
 import Login from "./Component/Login/Login"
+import { Routes, Route,  } from 'react-router-dom';
+
 
 function App() {
  
@@ -15,7 +16,7 @@ function App() {
         <Route path="/users" element={<Users />} />
         <Route path="/homePage" element={<HomePage />} />
         <Route path="*" element="" />
-      </Routes>
+      </Routes >
        
     </>
   )

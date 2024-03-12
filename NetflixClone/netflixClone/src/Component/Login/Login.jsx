@@ -2,29 +2,44 @@ import React, { useEffect, useState } from "react";
 
 import NavImage from "/Image/Logo.png";
 import HeroImage from "../../../public/Image/HeroImage.png";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../Redux/AuthSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser ,loginSuccess} from "../Redux/AuthSlice";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
- const dispatch=useDispatch()
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+dispatch(loginSuccess(), loginUser())
 
-    dispatch(loginUser({  userName,  password }));
-    console.log(userName,password);
+    try {
+      const response = dispatch(loginUser({ userName, password }));
+      if (response.status) {
+        
+        console.log("Giriş Başarılı");
+        
+        
+      } else {
+        console.error("Giriş başarısız.");
+      }
+    } catch (error) {
+      
+      console.error("Giriş hatası:", error);
+    }
+
   };
 
   return (
     <div className="relative flex flex-col bg-custom-bg bg-cover bg-no-repeat bg-center h-[1314px]">
       <img
-
-      
         src={HeroImage}
         alt="Arka Plan Resmi"
-        className="w-[1512px] h-[1114px] "  
+        className="w-[1512px] h-[1114px] "
       />
 
       <div className="absolute felx flex-col  justify-center items-center pt-9 pl-9  bg-transparent  ">
@@ -41,9 +56,16 @@ const Login = () => {
             >
               Sign In
             </label>
+            <p>
+            kminchelle
+              <br />0lelplR
+            </p>
           </div>
           <div className=" flex flex-col gap-5 justify-center items-center  bg-black bg-opacity-5">
-            <form onSubmit={handleSubmit}  className="flex flex-col gap-5 justify-center items-center  bg-black bg-opacity-5"  >
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col gap-5 justify-center items-center  bg-black bg-opacity-5"
+            >
               <input
                 type="text"
                 placeholder="Email or phone number"
@@ -55,13 +77,16 @@ const Login = () => {
                 type="password"
                 placeholder="Password"
                 className="w-80 h-12 bg-[#333333]  placeholder-[#8c8c8c] px-5 py-3 text-lg rounded-sm focus:outline-none"
-
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <button type="submit" className="w-80 h-12 bg-[#E50914]  text-base rounded-sm ">
+              <button
+                type="submit"
+                className="w-80 h-12 bg-[#E50914]  text-base rounded-sm "
+              >
                 Sign In
               </button>
+
               <div className="bg-transparent flex flex-row ">
                 <div className="flex flex-row bg-transparent pr-16 ">
                   <input
@@ -83,6 +108,8 @@ const Login = () => {
                 </label>
               </div>
             </form>
+
+            {/* {isLoggedIn && <Navigate to="/users" />} */}
             <div className="bg-transparent w-[314px] left-0 pt-16 ">
               <label
                 htmlFor=""

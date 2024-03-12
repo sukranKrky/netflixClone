@@ -16,7 +16,7 @@ import MyList from "./MoviesList/MyList";
 
 const HomePage = () => {
   return (
-    <div className="w-[1444px] h-[3123px] flex flex-col gap-4 ">
+    <div className="w-[1444px] h-[3123px] flex flex-col gap-4  ">
       <nav className="flex flex-row w-[1440px] h-[1024]  items-start py-2 px-16 justify-between">
         <div className="flex flex-row py-3 ">
           <img src={NavImage} alt="" className="w-28 h-7 " />
