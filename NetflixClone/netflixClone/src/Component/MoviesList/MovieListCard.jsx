@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ArrowRight from "/Image/icone/ArrowRight.png";
 import axios from "axios";
+import SliderBar2 from "../Sliders/SliderBar2";
+import Slider from "react-slick";
+import SliderBar from "../Sliders/SliderBar";
 
 const MovieListCard = () => {
   const [data, setData] = useState([]);
@@ -31,29 +34,9 @@ const MovieListCard = () => {
         </p>
         <div className="relative bg-transparent">
           <div className=" flex flex-row h-40 gap-3  bg-transparent">
-            {data.map((movie) => (
-              <div key={movie.id}>
-                <div className=" flex flex-col justify-center items-center ">
-                  <img
-                    src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                    alt=""
-                    className="w-72 h-40 py-2  "
-                    
-                  />
-                  <div className="w-44 h-[3px]  bg-[#525253]">
-                    <div className="w-[20%] h-[3px] bg-[#B9090B] "></div>
-                  </div>
-                </div>
-              </div>
-            ))}
-
-           
-          </div>
-          <img
-            src={ArrowRight}
-            alt=""
-            className=" bg-transparent right-12 top-14 absolute h-8 w-8"
-          />
+            <SliderBar2 data={data}/>
+            
+            </div>
         </div>
       </div>
 
@@ -62,21 +45,7 @@ const MovieListCard = () => {
           Gündemdekiler
         </p>
         <div className="relative bg-transparent">
-          <div className=" flex flex-row h-40 gap-3  bg-transparent">
-            {data2.map((movie) => (
-              <div key={movie.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                  className="w-72 h-40 "
-                />
-              </div>
-            ))}
-          </div>
-          <img
-            src={ArrowRight}
-            alt=""
-            className=" bg-transparent right-12 top-14 absolute h-8 w-8"
-          />
+          <SliderBar data={data2}/>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ArrowRight from "/Image/icone/ArrowRight.png";
 import axios from 'axios';
+import SliderBar from '../Sliders/SliderBar';
 
 const MyList = () => {
 
@@ -28,9 +29,17 @@ const MyList = () => {
           <p className="bg-transparent  text-2xl font-bold text-[#E5E5E5]  ">
             Listem
           </p>
-          <div className="relative bg-transparent">
-            <div className=" flex flex-row h-40 gap-3  bg-transparent">
-            {data.map((movie) => (
+          <div className="relative bg-transparent ">
+             <SliderBar data={data}/>
+             
+             
+             
+             
+             {/* <div className=" flex flex-row h-40 gap-3  bg-transparent">
+           
+           
+           
+           {data.map((movie) => (
               <div key={movie.id}>
                 <img
                   src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
@@ -40,7 +49,7 @@ const MyList = () => {
             ))}
               
             </div>
-            <img src={ArrowRight} alt="" className=" bg-transparent right-12 top-16 absolute h-8 w-8" />
+            <img src={ArrowRight} alt="" className=" bg-transparent right-12 top-16 absolute h-8 w-8" /> */}
           </div>
         </div>
     </div>

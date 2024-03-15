@@ -40,15 +40,7 @@ const NetflixOrijinal = () => {
             <img src={MoviePoster3} alt="" className="w-[260px]"  />
             <img src={MoviePoster4} alt="" className="w-[260px]"  />
             <img src={MoviePoster5} alt="" className="w-[260px]"  />
-{/* 
-            {data.map((movie) => (
-              <div key={movie.id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-                  className="w-[285px] h-[570px] " 
-                />
-              </div>
-            ))} */}
+
 
         </div>
         <img

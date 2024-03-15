@@ -3,35 +3,36 @@ import React, { useEffect, useState } from "react";
 import NavImage from "/Image/Logo.png";
 import HeroImage from "../../../public/Image/HeroImage.png";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser ,loginSuccess} from "../Redux/AuthSlice";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-
+import { loginUser } from "../Redux/AuthSlice";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-dispatch(loginSuccess(), loginUser())
+
+    let userCredentials = {
+      userName,
+      password,
+    };
 
     try {
-      const response = dispatch(loginUser({ userName, password }));
-      if (response.status) {
-        
-        console.log("Giriş Başarılı");
-        
-        
-      } else {
-        console.error("Giriş başarısız.");
-      }
+      const response=dispatch(loginUser(userCredentials));
+      setUserName("");
+      setPassword("");
+      console.log("login", response);
+     
     } catch (error) {
-      
       console.error("Giriş hatası:", error);
     }
 
+   
   };
 
   return (
@@ -57,8 +58,9 @@ dispatch(loginSuccess(), loginUser())
               Sign In
             </label>
             <p>
-            kminchelle
-              <br />0lelplR
+              kminchelle
+              <br />
+              0lelplR
             </p>
           </div>
           <div className=" flex flex-col gap-5 justify-center items-center  bg-black bg-opacity-5">
@@ -109,7 +111,7 @@ dispatch(loginSuccess(), loginUser())
               </div>
             </form>
 
-            {/* {isLoggedIn && <Navigate to="/users" />} */}
+            {isLoggedIn && <Navigate to="/users" />}
             <div className="bg-transparent w-[314px] left-0 pt-16 ">
               <label
                 htmlFor=""
