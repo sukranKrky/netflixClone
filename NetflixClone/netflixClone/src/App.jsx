@@ -17,7 +17,7 @@ function App() {
         <Route path="/users" element={<Users />} />
         <Route path="/homePage" element={<HomePage />} />
         <Route path="/detail" element={<DetailMovie />} />
-
+        <Route path="/homePage/:movieId" element={<DetailMovie  />} />
         <Route path="*" element="" />
       </Routes >
        
