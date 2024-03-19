@@ -6,6 +6,7 @@ import Login from "./Component/Login/Login"
 import { Routes, Route,  } from 'react-router-dom';
 import Navbar from './Component/Navbar/Navbar';
 import DetailMovie from './Component/movieDetail/DetailMovie';
+import MyMovieList from './Component/ListComponent/MyMovieList';
 
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
         <Route path="/homePage" element={<HomePage />} />
         <Route path="/detail" element={<DetailMovie />} />
         <Route path="/homePage/:movieId" element={<DetailMovie  />} />
+        <Route path="/mylist" element={<MyMovieList  />} />
+
         <Route path="*" element="" />
       </Routes >
        

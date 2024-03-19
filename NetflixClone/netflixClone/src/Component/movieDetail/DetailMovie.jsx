@@ -13,6 +13,10 @@ import N from "/Image/N.png";
 import { SlLike } from "react-icons/sl";
 import { BiSolidLike } from "react-icons/bi";
 import { BiLike } from "react-icons/bi";
+import { useDispatch, useSelector } from "react-redux";
+import { addMovie } from "../Redux/favoriteSlice";
+import { IoAddSharp } from "react-icons/io5";
+import { IoCheckmark } from "react-icons/io5";
 const DetailMovie = () => {
   const [data, setData] = useState({});
   const [isActive, setIsActive] = useState(true);
@@ -56,6 +60,21 @@ const DetailMovie = () => {
   const handleDislike= () => {
     SetIsDislike(!isDislike);
   };
+
+  const dispatch = useDispatch();
+  const favoriteMovies = useSelector(state => state.favorite.movies);
+  const isMovieInFavorites = favoriteMovies.some(favoriteMovie => favoriteMovie.id === data.id);
+
+  const handleAddToFavorites = () => {
+    if (!favoriteMovies.some(favoriteMovie => favoriteMovie.id === data.id)) {
+      dispatch(addMovie(data))
+    } else {
+      console.log("Film zaten favori listenizde bulunuyor.");
+    }
+  };
+
+
+
   return (
     <div>
       <Navbar />
@@ -105,9 +124,15 @@ const DetailMovie = () => {
                 <img src={Play} alt="" className="bg-transparent " />
                 Oynat
               </button>
-              <button className="flex flex-row h-14 w-auto text-2xl font-bord text-white  justify-center items-center py-4 px-5 gap-5 bg-white bg-opacity-30 rounded-lg ">
-                <img src={add} alt="" className="bg-transparent " />
-                <p className=" bg-transparent  text-white">Listeme Ekle</p>
+              <button  onClick={handleAddToFavorites} className="flex flex-row h-14 w-auto text-2xl font-bord text-white  justify-center items-center py-4 px-5 gap-5 bg-white bg-opacity-30 rounded-lg ">
+              
+              {!isMovieInFavorites ?<IoAddSharp  className="bg-transparent text-3xl"/> :<IoCheckmark className="bg-transparent text-3xl " /> }
+              
+              <p className=" bg-transparent  text-white"> {!isMovieInFavorites ? "Listeme Ekle" : "Listeye Eklendi"}</p>
+
+
+                {/* <img src={add} alt="" className="bg-transparent " />
+                <p className=" bg-transparent  text-white">Listeme Ekle</p> */}
               </button>
 
               <button onClick={handleLike}  className={classNames({
@@ -122,7 +147,7 @@ const DetailMovie = () => {
               </button>
               <button onClick={handleDislike}  className={classNames({
                 "border-2 rounded-[50%] w-14 h-14 flex items-center justify-center":true,
-                "  bg-black ":!isDislike,
+                "bg-black ":!isDislike,
                 " bg-transparent ":isDislike
 
               })}>

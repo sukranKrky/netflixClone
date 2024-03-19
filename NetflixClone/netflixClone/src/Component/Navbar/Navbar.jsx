@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavImage from "/Image/Logo.png";
 import Bell from "/Image/icone/Bell.png";
 import Search from "/Image/icone/Search.png";
@@ -9,21 +9,38 @@ import { Link } from "react-router-dom";
 import Dropdown from "../dropdown/Dropdown";
 
 const Navbar = () => {
+
+  const [selectedMenu, setSelectedMenu] = useState(null);
+
+  const handleMenuClick = (menu) => {
+    setSelectedMenu(menu);
+  };
   return (
     <nav className="flex flex-row w-[1440px] h-[1024]  items-start py-2 px-16 justify-between">
       <div className="flex flex-row py-3 ">
         <img src={NavImage} alt="" className="w-28 h-7 " />
 
         <ul className="flex flex-row gap-3 px-12  ">
-          <Link to="/">
-            <li className="text-[#E5E5E5] font-extrabold text-sm">Ana Sayfa</li>
+          <Link to="/homePage">
+            <li    className={selectedMenu === "Ana Sayfa" ? "text-[#E5E5E5] font-extrabold text-sm" : "text-[#E5E5E5] text-sm"}
+          onClick={() => handleMenuClick("Ana Sayfa")}>Ana Sayfa</li>
           </Link>
           <Link to="/homePage">
-            <li className="text-[#E5E5E5] text-sm">Diziler</li>
+            <li className={selectedMenu === "Diziler" ? "text-[#E5E5E5] font-extrabold text-sm" : "text-[#E5E5E5] text-sm"}
+          onClick={() => handleMenuClick("Diziler")}>Diziler</li>
           </Link>
-          <li className="text-[#E5E5E5] text-sm">Filmler</li>
-          <li className="text-[#E5E5E5] text-sm">Yeni ve Popiler</li>
-          <li className="text-[#E5E5E5] text-sm">Listem</li>
+          <Link to="/homePage">
+          <li className={selectedMenu === "Filmler" ? "text-[#E5E5E5] font-extrabold text-sm" : "text-[#E5E5E5] text-sm"}
+          onClick={() => handleMenuClick("Filmler")}>Filmler</li>
+          </Link>
+          <Link to="/homePage">
+          <li className={selectedMenu === "Yeni ve Popiler" ? "text-[#E5E5E5] font-extrabold text-sm" : "text-[#E5E5E5] text-sm"}
+          onClick={() => handleMenuClick("Yeni ve Popiler")}>Yeni ve Popiler</li>
+          </Link>
+          <Link to="/mylist">
+            <li className={selectedMenu === "Listem" ? "text-[#E5E5E5] font-extrabold text-sm" : "text-[#E5E5E5] text-sm"}
+          onClick={() => handleMenuClick("Listem")}>Listem</li>
+          </Link>
         </ul>
       </div>
       <div className=" flex flex-row gap-5 items-center py-3 ">
@@ -39,9 +56,7 @@ const Navbar = () => {
         </div> */}
 
         <div className=" flex flex-row gap-2 items-center ">
-
-<Dropdown/>
-
+          <Dropdown />
         </div>
       </div>
     </nav>

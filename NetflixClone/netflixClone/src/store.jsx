@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useReducer } from "react";
 import AuthSlice from "./Component/Redux/AuthSlice";
+import favoriteReducer from "./Component/Redux/favoriteSlice";
 
 
 
 const store =configureStore({
   reducer:{
-    auth: AuthSlice
+    auth: AuthSlice,
+    favorite: favoriteReducer,
   }
 })
 

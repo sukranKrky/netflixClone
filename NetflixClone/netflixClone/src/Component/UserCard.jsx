@@ -24,7 +24,6 @@ const UserCard = () => {
 
           <div className="  w-[200px] h-64 hover:opacity-85 ">
             <img src={Umut} alt="" />
-
             <p className=" flex text-[#5B5B5B] text-2xl pt-7 justify-center">
               Umut
             </p>

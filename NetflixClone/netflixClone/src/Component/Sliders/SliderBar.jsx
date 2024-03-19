@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
-import DetailMovie from "../movieDetail/DetailMovie";
 
 
 const SliderBar = ({data}) => {
@@ -17,6 +16,8 @@ const SliderBar = ({data}) => {
     slidesToShow: 5,
     
   };
+
+  
   return (
     <div className="slider-container w-[1290px]  bg-transparent items-center  ">
       <Slider
